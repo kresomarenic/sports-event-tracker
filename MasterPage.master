@@ -1,0 +1,95 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <title>Sport Event Tracker</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <!-- scripts for boostrap -->
+    <script src="/Scripts/jquery-3.0.0.slim.min.js"></script>
+    <script src="/Scripts/popper.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+
+    <!-- custom scripts-->
+     <script type="text/javascript">
+        function openModal(modalId) {
+            $(modalId).modal('show');
+        }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <ul class="navbar-brand navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <asp:HyperLink CssClass="nav-link" ID="HyperLinkHome" runat="server" NavigateUrl="~/Default.aspx">Sport Event Tracker</asp:HyperLink>
+                        </li>                        
+                    </ul>
+                    <asp:LoginView ID="LoginView" runat="server">
+                        <AnonymousTemplate>
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item active">
+                                    <asp:HyperLink CssClass="nav-link" ID="HyperLinkLogin" runat="server" NavigateUrl="~/Login.aspx">Prijava</asp:HyperLink>
+                                </li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item active dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarAdministrationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administracija</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarAdministrationDropdown">
+                                        <asp:HyperLink CssClass="dropdown-item" ID="HyperLinkManageEvents" runat="server" NavigateUrl="~/Administration/ManageEvents.aspx">Sportska događanja</asp:HyperLink>
+                                        <div class="dropdown-divider"></div>
+                                        <asp:HyperLink CssClass="dropdown-item" ID="HyperLinkAddUser" runat="server" NavigateUrl="~/Administration/AddUser.aspx">Dodavanje korisnika</asp:HyperLink>
+                                        <asp:HyperLink CssClass="dropdown-item" ID="HyperLinkManageUsers" runat="server" NavigateUrl="~/Administration/ManageUsers.aspx">Upravljanje korisnicima</asp:HyperLink>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown active">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarCodebooksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Šifrarnici</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarCodebooksDropdown">
+                                        <asp:HyperLink CssClass="dropdown-item" ID="HyperLinkCountries" runat="server" NavigateUrl="~/Codebooks/Countries.aspx">Države</asp:HyperLink>
+                                        <asp:HyperLink CssClass="dropdown-item" ID="HyperLinkSports" runat="server" NavigateUrl="~/Codebooks/Sports.aspx">Sportovi</asp:HyperLink>
+                                        <asp:HyperLink CssClass="dropdown-item" ID="HyperLinkTeams" runat="server" NavigateUrl="~/Codebooks/Teams.aspx">Klubovi</asp:HyperLink>
+                                    </div>
+                                </li>
+                                <li class="nav-item active">
+                                    <asp:LoginStatus CssClass="nav-link" ID="LoginStatus" runat="server" LogoutText="Odjava" LogoutAction="Redirect" LogoutPageUrl="~/Default.aspx" />
+                                </li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </nav>
+
+        <!-- page content -->
+        <div class="container py-5">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <!-- footer -->
+        
+            <hr />
+            <div class="container d-flex justify-content-center mt-auto">
+                <footer>
+                <span>&copy <%: DateTime.Now.Year %> - Sport Event Tracker</span>
+                </footer>
+            </div>
+        
+    </form>
+
+    
+
+</body>
+</html>
